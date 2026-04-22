@@ -1,0 +1,182 @@
+---
+import { Image } from 'astro:assets';
+import type { GetStaticPaths } from "astro";
+import { getCollection } from 'astro:content';
+import FormattedMonth from '../../components/FormattedMonth.astro';
+import Layout from '../../layouts/Layout.astro';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = (await getCollection('articles'))
+    .filter((post) => post.data.posted !== false)
+    .sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+  );
+  return paginate(posts, { pageSize: 10 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+
+const title = `Читальня`;
+const description = "Тут зібрані статті про Чай і Чань, чайну традицію і культуру";
+const pageNumber = page.currentPage;
+---
+
+<Layout {title} {description} >
+	<h1 class="page-title">{title}</h1>
+	<p class="page-description">{description}</p>
+	<div class="pagination-block">
+    	{page.url.prev && <a href={page.url.prev} class="prev-page-pagin">&#8592;</a>}
+    	<p class="page-number">сторінка {pageNumber}</p>
+    	{page.url.next && <a href={page.url.next} class="next-page-pagin">&#8594;</a>}
+  	</div>
+
+	<section>
+		<ul>
+			{page.data.map((post) => (
+				<li>
+					<a href={`/articles/${post.id}`}>
+						{post.data.heroImage && (
+							<Image width={720} height={360} src={post.data.heroImage} alt="" />
+						)}
+						<h4 class="title">{post.data.title}</h4>
+						<p class="date">
+							<FormattedMonth date={post.data.pubDate} />
+						</p>
+					</a>
+				</li>
+			))}
+		</ul>
+	</section>
+
+    <div class="pagination-block">
+    {page.url.prev && <a href={page.url.prev} class="prev-page-pagin">&#8592;</a>}
+    <p class="page-number">сторінка {page.currentPage}</p>
+    {page.url.next && <a href={page.url.next} class="next-page-pagin">&#8594;</a>}
+  </div>
+</Layout>
+
+<style>
+	main {
+		width: 960px;
+	}
+	.page-title {
+		display: none;
+
+		@media (min-width: 720px) {
+			display: block;
+			text-align: center;
+			margin-bottom: 2rem;
+		}
+	}
+	.page-description {
+		font-size: 1rem;
+		font-style: italic;
+		text-align: end;
+		text-wrap: balance;
+		margin: 0 0 3rem;
+		
+	}
+	section {
+		margin: 3rem auto;
+	}
+	ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5em;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		
+		@media (min-width: 720px) {
+			gap: 2rem;
+		}
+	}
+	ul li {
+		width: 100%;
+		text-align: center;
+		
+		@media (min-width: 720px) {
+			width: calc(50% - 1rem);
+		}
+	}
+	ul li * {
+		text-decoration: none;
+		transition: 0.2s ease;
+	}
+	ul li:first-child {
+		width: 100%;
+		margin-bottom: 0;
+		text-align: center;
+		
+		@media (min-width: 720px) {
+			margin-bottom: 1rem;
+		}
+	}
+	ul li:first-child img {
+		width: 100%;
+	}
+	ul li:first-child .title {
+		font-size: 1.563em;
+		
+		@media (min-width: 720px) {
+			font-size: 2.369rem;
+		}
+	}
+	ul li img {
+		margin-bottom: 0.5rem;
+		border-radius: 12px;
+	}
+	ul li a {
+		display: block;
+	}
+	.title {
+		margin: 0;
+		color: rgb(var(--black));
+		line-height: 1;
+	}
+	.date {
+		margin: 0;
+		color: rgb(var(--gray));
+	}
+	ul li a:hover h4,
+	ul li a:hover .date {
+		color: rgb(var(--accent));
+	}
+	ul a:hover img {
+		box-shadow: var(--box-shadow);
+	}
+	.pagination-block {
+        display: grid; 
+        grid-template-columns: 1fr auto 1fr;
+		    grid-template-areas: "prev page next";
+        justify-content: center; 
+        gap: 3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .prev-page-pagin {
+      grid-area: prev;
+      width: fit-content;
+      justify-self: end;
+    }
+
+    .next-page-pagin {
+      grid-area: next;
+      width: fit-content;
+      justify-self: start;
+    }
+
+    .page-number {
+      color: light-dark(var(--green), var(--active));
+      text-align: center;
+      grid-area: page;
+      margin-bottom: unset;
+    }
+    
+    .pagination-block > a {
+        padding: 0.2rem 0.5rem 0.1rem;
+        border: 1px solid light-dark(var(--foreground), var(--foreground-dark));
+        border-radius: 0.5rem;
+        font-size: 0.9rem;
+        color: light-dark(var(--foreground), var(--foreground-dark));
+    }
+</style>

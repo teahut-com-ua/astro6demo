@@ -1,0 +1,232 @@
+---
+import { Icon } from "astro-icon/components";
+
+---
+
+<nav class="nav-menu">
+	<button popovertarget="home-page" style="anchor-name: --anchor-button-home;">
+		<Icon class="icon" name="hut" size={36} />
+	</button>
+	<div id="home-page" class="tooltip" popover style="position-anchor: --anchor-button-home;">
+		<ul>
+			<li>
+				<a href="/">
+                    ХАТИНКА
+                </a>
+			</li>
+			<li>
+				<a href="">
+                    - Наша Традиція
+                </a>
+			</li>
+			<li>
+				<a href="">
+                    - Керівні засади цієї Хатинки
+                </a>
+			</li>
+			<li>
+				<a href="">
+                    - Про нас
+                </a>
+			</li>
+			<li>
+				<a href="">
+                    - Про нашу крамничку
+                </a>
+			</li>
+		</ul>
+	</div>
+	
+	<button popovertarget="tea-page" style="anchor-name: --anchor-button-tea;">
+		<Icon class="icon" name="teapot-leaves" size={36} />
+	</button>
+	<div id="tea-page" class="tooltip" popover style="position-anchor: --anchor-button-tea;">
+		<ul>
+			<li>
+				<a href="/tea">
+                    ЧАЙ І НАЧИННЯ
+                </a>
+			</li>
+			<li>
+                <a class="menu-link" href='/categories/shengcha/'>
+                    - Шен пуери
+                </a>
+            </li>
+			<li>
+                <a class="menu-link" href='/categories/heicha/'>
+                    - Шу пуери й Хейча
+                </a>
+            </li>
+			<li>
+                <a class="menu-link" href='/categories/hongcha/'>
+                    - Червоні чаї
+                </a>
+            </li>
+			<li>
+                <a class="menu-link" href='/categories/wulong&gaba/'>
+                    - Вулони й ҐАБА
+                </a>
+            </li>
+			<li>
+                <a class="menu-link" href='/categories/baicha&lucha/'>
+                    - Білі й Зелені
+                </a>
+            </li>
+			<li>
+                <a class="menu-link" href='/categories/japanese/'>
+                    - Японські
+                </a>
+            </li>
+			<li>
+                <a class="menu-link teas" href='/teawares'>
+                    - Чайне начиння
+                </a>
+            </li>
+			<li>
+                <a class="menu-link" href='/tags/'>
+                    Позначки чаїв
+                </a>
+            </li>
+		</ul>
+	</div>
+	
+	<button popovertarget="blog-page" style="anchor-name: --anchor-button-articles;">
+		<Icon class="icon" name="books" size={36} />
+	</button>
+	<div id="blog-page" class="tooltip" popover style="position-anchor: --anchor-button-articles;">
+		<ul>
+			<li>
+				<a href="/articles">
+                    ЧИТАЛЬНЯ
+                </a>
+			</li>
+			<li>
+                <a class="menu-link" href='/library/gongfuchatips/'>
+                    - Поради з Ґонфу Ча
+                </a>
+            </li>
+			<li>
+                <a class="menu-link" href='/library/gongfuteapot/'>
+                    - Чайник Ґонфу
+                </a>
+            </li>
+			<li>
+                <a class="menu-link" href='/library/brewingtips/'>
+                    - Поради щодо заварювання
+                </a>
+            </li>
+			<li>
+                <a class="menu-link" href='/library/teaandseasons/'>
+                    - Про чай і сезони
+                </a>
+            </li>
+			<li>
+                <a class="menu-link" href='/library/questionsandanswers/'>
+                    - Питання і відповіді
+                </a>
+            </li>
+		</ul>
+	</div>
+</nav>
+
+<style>
+    .nav-menu {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2rem;
+		width: 5rem;
+		background-color: light-dark(var(--active-green), var(--footer));
+		place-items: center;
+		align-content: center;
+
+		button {
+			width: 3rem;
+			aspect-ratio: 1;
+			background-color: transparent;
+			color: light-dark(oklch(85% 0.063 96.44), var(--foreground-dark));
+			border: 0;
+			z-index: 2;
+            cursor: pointer;
+
+            &:hover {
+                color: var(--active);
+            }
+
+			&:popover-open {
+				/* color: #fff; */
+			}
+		}
+
+		& .tooltip {
+			margin: 0;
+			position-area: right;
+			background-color: light-dark(var(--active-green), var(--footer));
+			/* color: light-dark(#fff); */
+			border: 0;
+			overflow: visible;
+			border-radius: 0 1rem 1rem 0;
+            z-index: -1;
+
+			a {
+				color: var(--foreground-dark);
+				text-decoration: none;
+                line-height: 2.7rem;
+			}
+
+			&::before, &::after {
+				position: absolute;
+				content: '';
+				width: 18px;
+				aspect-ratio: 1;
+			}
+
+			&::before {
+				left: 0;
+				top: -18px;
+				background: radial-gradient(
+					circle 18px at top right,
+					#0000 98%, light-dark(var(--active-green), var(--footer))
+				);
+			}
+
+			&::after {
+				left: 0;
+				bottom: -18px;
+				background: radial-gradient(
+					circle 18px at bottom right,
+					#0000 98%, light-dark(var(--active-green), var(--footer))
+				);
+			}
+		}
+
+		ul {
+			list-style: none;
+			padding: 1rem 0;
+		}
+
+        li {
+            padding: 0 1rem;
+        }
+
+        ul li:has(a.active),
+        ul li:has(a:hover) {
+            background: var(--button);
+            color: light-dark(var(--active), var(--background));
+        }
+	}
+
+	[popover] {
+		translate: -360px 0;
+		transition: translate 0.5s ease-out, display 0.5s ease-out allow-discrete;
+
+		&:popover-open {
+			translate: 1rem 0;
+		}
+	}
+
+	@starting-style {
+		[popover]:popover-open {
+			translate: -360px 0;
+		}
+	}
+</style>

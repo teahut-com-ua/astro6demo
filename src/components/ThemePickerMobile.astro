@@ -1,0 +1,74 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<form class="theme-picker-mobile" action="">
+    <fieldset>
+        <legend class="visually-hidden">Вибір теми:</legend>
+        <label class="icon-label" for="light">
+            <Icon name="sun-filled" size={24} />
+            <input 
+                class="visually-hidden"
+                name="color-scheme" 
+                type="radio" 
+                value="light"
+                id="light"
+            >
+        </label>
+        <label class="icon-label" for="dark">
+            <Icon name="moon-filled" size={24} />
+            <input 
+                class="visually-hidden"
+                name="color-scheme" 
+                type="radio" 
+                value="dark"
+                id="dark"
+            >
+        </label>
+    </fieldset>
+</form>
+
+<style>
+    form.theme-picker-mobile {
+        position: fixed;
+        margin: 0 auto;
+        top: 1.2rem;
+        right: 1rem;
+        display: block;
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    fieldset {
+        display: flex;
+        /* gap: 0.1rem; */
+        margin-inline: 0;
+        padding-inline: 0;
+        padding-block: 0;
+    }
+
+    .visually-hidden {
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+    }
+
+    .theme-picker > fieldset,
+    .theme-picker-mobile > fieldset {
+        border: 0;
+        display: flex;
+        border-radius: 999px;
+        background-color: light-dark(var(--background), var(--foreground-dark));
+        color: light-dark(var(--foreground), var(--footer));
+    }
+
+    .icon-label {
+        display: flex;
+        padding: 0.7rem;
+        text-align: center;
+    }
+</style>

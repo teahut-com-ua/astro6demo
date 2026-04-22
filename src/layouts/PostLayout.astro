@@ -1,0 +1,95 @@
+---
+import { Image } from 'astro:assets';
+import Layout from './Layout.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import FormattedMonth from '../components/FormattedMonth.astro';
+
+import img1 from "../../public/teakettle.gif";
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.category.title} >
+	<article>
+		<div class="hero-image">
+			{frontmatter.heroImage && <Image src={frontmatter.heroImage} alt="" />}
+		</div>
+		<div class="prose">
+			<div class="title">
+				<h1>{frontmatter.title}</h1>
+				<h3 class="last-line">{frontmatter.subtitle}</h3>
+				<h4 class="author">{frontmatter.author}</h4>
+				<div class="date">
+					<FormattedMonth date={frontmatter.pubDate} />
+						{
+							frontmatter.postedDate && (
+								<div class="last-updated-on">
+									Викладено<FormattedDate date={frontmatter.postedDate} />
+										</div>
+							)
+						}
+				</div>
+				<hr />
+			</div>
+			<slot />
+			<p class="bottom-sign">Українською перекладено спеціяльно для TeaHut.com.ua</p>
+        	<div class="last-line" style="display: flex; justify-content: end;">
+            	<Image style="display: block;  width: 70px; border: unset;" src={img1} alt="Чайник і чашка" />
+        	</div>
+		</div>
+	</article>
+</Layout>
+
+<style>
+	main {
+		width: calc(100% - 2em);
+		max-width: 100%;
+		margin: 0;
+	}
+	.hero-image {
+		width: 100%;
+		height: auto;
+	}
+	.hero-image img {
+		display: block;
+		margin: 0 auto;
+		border-radius: 12px;
+		box-shadow: var(--box-shadow);
+	}
+	.prose {
+		margin: auto;
+		
+		@media (min-width: 720px) {
+			max-width: 720px;
+		}
+	}
+	.title {
+		margin-bottom: 1em;
+		padding: 1em 0;
+		text-align: center;
+		line-height: 1;
+	}
+	.title h1 {
+		margin: 2rem 0 0.5em 0;
+	}
+	.author {
+		font-style: italic;
+		margin-bottom: 1.5rem;
+		text-align: end;
+	}
+	.date {
+		font-size: 1rem;
+		margin-bottom: 2em;
+		color: rgb(var(--gray));
+	}
+	.last-updated-on {
+		margin-top: 1rem;
+		font-style: italic;
+	}
+	.bottom-sign {
+        font-size: 0.9rem;
+        font-style: italic;
+        text-align: right;
+        margin-top: 0.3rem;
+    }
+</style>

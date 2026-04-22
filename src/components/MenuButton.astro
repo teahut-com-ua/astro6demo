@@ -1,0 +1,181 @@
+---
+import { Icon } from "astro-icon/components";
+import MobileMenu from "./MobileMenu.astro";
+import ThemePickerMobile from "./ThemePickerMobile.astro";
+---
+
+<button popovertarget="nav-menu" popovertargetaction="show" class="menu-btn icon">
+    <Icon name="menu" size={32} />
+</button>
+<div id="nav-menu" popover="" class="main-nav">
+    <button popovertarget="nav-menu" popovertargetaction="hide" class="close-btn icon">
+        <Icon name="close-rounded" size={32} />
+    </button>
+    <nav class="mobile-menu">
+        <ThemePickerMobile/>
+        <MobileMenu/>
+    </nav>
+</div>
+
+<style>
+    button {
+        border: 0;
+    }
+
+    .menu-btn {
+        padding: 0.5rem;
+        color: light-dark(var(--foreground), #f3eddb);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100%;
+        border: 2px solid rgb(95, 95, 95);
+        background-color: light-dark(#f3eddb, var(--footer));
+        width: 56px;
+        height: 56px;
+        cursor: pointer;
+        transition-duration: 500ms;
+    }
+
+    .icon {
+        color: light-dark(var(--foreground), #f3eddb);
+    }
+
+    .main-nav {
+        padding: 0; 
+        place-items: center; 
+        width: 100%; 
+        height: 100%; 
+        font-size: 2.25rem;
+        line-height: 2.5rem; 
+        color: #ffffff; 
+        background-color: transparent;
+    }
+
+  .close-btn {
+    position: fixed; 
+    bottom: 1rem; 
+    right: 1rem; 
+    z-index: 10; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem; 
+    border-radius: 100%; 
+    border: 2px solid #ffffff; 
+    width: 3.5rem; 
+    height: 3.5rem; 
+    font-size: 1.875rem;
+    line-height: 2.25rem; 
+  }
+  
+  .mobile-menu {
+    display: flex; 
+    position: relative; 
+    flex-direction: column; 
+    gap: 1.5rem; 
+    font-size: 2.25rem;
+    line-height: 2.5rem; 
+  }
+  
+  .menu-links {
+    display: block; 
+    position: relative; 
+    text-align: center;
+    color: #ffffff;
+  }
+
+  .main-nav,
+  .main-nav::backdrop {
+    transition:
+      500ms opacity,
+      500ms overlay allow-discrete,
+      500ms display allow-discrete;
+      opacity: 0;
+    }
+
+  .main-nav a {
+    transition: 500ms transform;
+    transform: translateY(-48px);
+  }
+  
+  .main-nav::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+  }
+  
+  .main-nav:popover-open {
+    opacity: 1;
+    display: grid;
+  }
+
+  .main-nav:popover-open a {
+    transform: translateY(0);
+  }
+  
+  .main-nav:popover-open::backdrop {
+    opacity: 1;
+  }
+   
+
+  @starting-style {
+    .main-nav:popover-open,
+    .main-nav:popover-open::backdrop {
+      opacity: 0;
+    }
+
+    .main-nav:popover-open a {
+      transform: translateY(48px);
+    }
+  }
+
+  @media screen and (min-width: 48rem) {
+    .menu-btn, .home-link, .close-btn {
+      display: none;
+    }
+
+    .navigation {
+      margin: 0 1rem;
+      grid-template-columns: 56px auto 1fr auto auto;
+      grid-template-areas:
+        "logo . desktop-menu . link4";
+    }
+
+    .desktop-menu {
+      display: flex;
+      gap: 3rem;
+      grid-area: desktop-menu;
+      font-size: 1.5rem;
+      font-weight: 600;
+      opacity: 0.7;
+    }
+
+    form.theme-picker {
+      display: block;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    a.link {
+      color: light-dark(var(--foreground), var(--background));
+      padding: 0 0.5rem;
+      opacity: 0.8;
+    }
+
+    .link4 {
+      grid-area: link4;
+    }
+        
+    .header-logo:hover {
+      color: light-dark(var(--foreground), var(--active));
+      border: solid 3px var(--active);
+      border-radius: 100%;
+    }
+
+    label:has(input[name="color-scheme"][type="radio"]:checked) {
+      color: var(--active);
+      border: 1px solid var(--active);
+      border-radius: 100%;
+    }
+  }
+</style>

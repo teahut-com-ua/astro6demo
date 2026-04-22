@@ -1,18 +1,48 @@
+---
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import MobileNavigation from "../components/MobileNavigation.astro";
+import AsideMenu from "../components/AsideMenu.astro";
+import logo from '../../public/logo.png';
+import ThemePicker from "../components/ThemePicker.astro";
+import Header from "../components/Header.astro";
+
+const { title, description } = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
+<html lang="uk">
+	<BaseHead title={title} description={description} />
 	<body>
-		<slot />
+		<Header {title} />
+		<aside class="aside-menu">
+			<a href="/">
+				<Image class="logo" src={logo} alt="Logo" />
+			</a>
+			<AsideMenu />
+			<ThemePicker />
+		</aside>
+		<main>
+			<slot />
+		</main>
+		<Footer />
+		<MobileNavigation />
 	</body>
 </html>
 
 <style>
-
+	.logo {
+		display: block;
+		width: 4rem;
+		max-width: 100%;
+		aspect-ratio: 1;
+		padding: 0.3rem;
+		margin: 0.5rem 0;
+		background-color: light-dark(oklch(85% 0.063 96.44), var(--foreground-dark));
+		border-radius: 100vw;
+		border: 1px solid rgb(var(--black));
+	}
 </style>

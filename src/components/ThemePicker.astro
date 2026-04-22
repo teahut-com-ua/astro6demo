@@ -1,0 +1,83 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+	<fieldset class="mode-switcher">
+		<div class="icon-block light">
+			<input type="radio" name="switcher" id="light" value="light">
+			<label class="icon-label" for="light">
+				<Icon name="sun-filled" size={20} />
+			</label>
+		</div>
+		<div class="icon-block dark">
+			<input type="radio" name="switcher" id="dark" value="dark">
+			<label class="icon-label" for="dark">
+				<Icon name="moon-filled" size={20} />
+			</label>
+		</div>
+	</fieldset>
+
+<style>
+    .mode-switcher {
+		display: flex;
+
+		& div {
+			gap: 0;
+			margin: 0;
+		}
+	}
+
+	fieldset {
+		display: flex;
+		/* gap: 0.5rem; */
+		margin-inline: 0;
+		padding-block: 0;
+		padding-inline: 0;
+		border-width: 0;
+		/* border: 1px solid var(--footer);
+		border-radius: 100vw; */
+	}
+
+	label {
+		line-height: 1;
+		display: flex;
+		transition: color 0.15s ease-in-out;
+	}
+
+	.icon-block {
+		padding: 0.45rem;
+		border-radius: 100vw;
+	}
+	
+	.icon-block:has(input[name="switcher"][type="radio"]:checked) {
+		border: 1px solid light-dark(var(--footer), var(--foreground-dark));
+		background: light-dark(oklch(85% 0.063 96.44), var(--active));
+	}
+	
+	input[type="radio"] {
+		appearance: none;
+	}
+</style>
+
+<script is:inline>
+    document.addEventListener('astro:page-load', () => {
+
+        const radioButtons = document.querySelectorAll('input[name="switcher"]');
+
+        // Set theme based on saved preference on load
+        const currentTheme = sessionStorage.getItem('theme');
+            if (currentTheme) {
+            document.querySelector(`input[value="${currentTheme}"]`).checked = true;
+        } 
+
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if (e.target.value === 'dark') {
+                    sessionStorage.setItem('theme', 'dark');
+                } else {
+                    sessionStorage.setItem('theme', 'light');
+                }
+            });
+        });
+    });
+</script>

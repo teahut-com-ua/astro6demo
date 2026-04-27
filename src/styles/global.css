@@ -4,7 +4,7 @@
 	--accent: #2337ff;
 	--accent-dark: #000d8a;
 	--active: rgb(163, 128, 23);
-	--active-green: rgb(70, 112, 45);
+	--active-green: rgb(89, 143, 58);
 	--background: rgb(255, 255, 255);
     --background-light: oklch(92.82% 0.057 96.44);
 	--background-dark: oklch(24.43% 0.008 84.59);
@@ -19,9 +19,11 @@
 	--gray-light: rgb(211, 204, 175);
 	--gray-dark: 34, 41, 57;
 	--gray-op: rgba(110, 103, 82, 0.507);
-	--brown: #9b4601;
+	--brown: oklch(49.626% 0.13164 49.491);
+	--brown-dark: oklch(24.056% 0.05763 57.884);
 	--button: oklch(72.18% 0.093 108.52 / 52%);
 	--green: oklch(46% 0.15 144 / 90%);
+	--green-light: oklch(95.948% 0.08683 133.137);
 	--green-dark: oklch(75% 0.21 144 / 100%);
 	--gray-gradient: rgba(var(--gray-light), 50%), var(--background);
 	--primary-color: light-dark(var(--foreground), var(--foreground-dark));
@@ -58,8 +60,6 @@ body {
     font-family: "Gabriela", sans-serif;
     padding: 0;
 	text-align: left;
-    background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
     word-wrap: break-word;
 	overflow-wrap: break-word;
     font-size: clamp(1rem, 0.7rem + 0.7vw, 1.375rem);
@@ -98,12 +98,11 @@ body {
 main {
     max-width: calc(100% - 2em);
 	margin: auto;
-	/* padding: 1em; */
     
     @media (min-width: 720px) {
 		grid-area: main;
-        max-width: 960px;
-        padding: 3em 1em;
+        max-width: 1020px;
+        padding: 2em 1em;
     }
 }
 footer {
@@ -255,14 +254,4 @@ hr {
 	clip-path: inset(50%);
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
-}
-.mode-switcher {
-	display: flex;
-	justify-content: flex-end;
-
-	div {
-		display: flex;
-		gap: 10px;
-		margin: 10px;
-	}
 }

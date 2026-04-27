@@ -1,0 +1,149 @@
+---
+import ImageSlider from "./ImageSlider-new.astro";
+import {exchangePrice} from "../utils";
+
+const { images, title, subtitle, region, yieldYear, variety, item = "Вартість за 10 гр", price, tags } = Astro.props;
+---
+
+<ImageSlider images={images} />
+<article class="container full-width">
+    <!-- <section class="text-information"> 
+        <div class="headerContainer">
+            <h1 class="title">{title}</h1>
+            <h4 class="subtitle">{subtitle}</h4>
+            <div class="yieldYear">
+                <div>Врожай:</div>
+                <div><p>{yieldYear}</p></div>
+            </div>
+            <div class="region">
+                <div class="heading">Походження:</div>
+                <div class="content"><p>{region}</p></div>
+            </div>
+            <div class="variety">
+                <div class="heading">Різновид:</div>
+                <div><p>{variety}</p></div>
+            </div>
+            <div class="priceBlock">
+                <div>
+                    <p>{item}: </p>
+                </div>
+                <div>
+                    <p><span class="price">{exchangePrice(price)}</span> грн.</p>
+                </div>
+            </div>
+            <div class="tags last-line">
+                {tags.map((tag: unknown) => (
+                    <button class="tag">
+                        <a type="button" aria-label="To Tag" href={`/tags/${tag}`}>{tag}</a>
+                    </button>
+                ))}
+            </div>
+        </div>
+    </section> -->
+</article>
+
+<style>
+    .container {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .container-slider {
+        /* width: 100%; */
+    }
+
+    .text-information {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .headerContainer { padding: 1rem; }
+
+    .title, .subtitle { text-align: center; }
+    
+    .subtitle { margin: 0 0 3rem; }
+
+    .region,
+    .yieldYear,
+    .variety,
+    .priceBlock {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .content {
+        text-align: end;
+    }
+
+    .heading {
+        margin-right: 1rem;
+    }
+    
+    .priceBlock { align-items: center; }
+
+    .price {
+        padding-left: 1rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: rgb(0, 153, 33);
+    }
+
+    button>a { 
+        color: light-dark(var(--foreground), var(--background));
+        padding: .3rem .5rem;
+        display: block;
+    }
+  
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+  
+    button.tag {
+        padding: .3rem .5rem;
+        margin: 0.25em;
+        border: dotted 1px #7c7c7c;
+        border-radius: .5em;
+        font-size: 1rem;
+        background-color: var(--button);
+        cursor: pointer;
+    }
+
+    .tag:hover>a {
+        color: var(--background);
+        transition: 0.3s;
+
+    }
+
+    .tag:hover { 
+        background-color: var(--active);
+        transition: 0.3s;
+        &a{
+            color: var(--background);
+        }
+    }
+
+    @media screen  and (min-width: 48rem){
+        .container {
+            display: flex;
+            padding-inline: 2.3rem;
+        }
+
+        /* .container-slider {
+            height: 100%;
+            margin: 0 auto;
+        } */
+
+        .text-information {
+            grid-column: 2/3;
+            grid-row: auto;
+            padding: 0;
+        }
+
+        .information { flex-direction: row; }
+
+        .headerContainer { padding: 1rem 0 0 2rem; }
+    }
+</style>

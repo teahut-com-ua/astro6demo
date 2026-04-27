@@ -100,12 +100,26 @@ const tea = defineCollection({
 	loader: glob({ base: './src/content/tea', pattern: '**/*.{md,mdx}' }),
 	schema: ({ image }) =>
 		z.object({
+			posted: z.boolean().default(true),
 			title: z.string(),
+			subtitle: z.string().optional(),
 			description: z.string(),
+			region: z.string(),
+			variety: z.string(),
+			yieldYear: z.string(),
+			aging: z.string().optional(),
+			item: z.string().optional(),
+      		price: z.number(),
 			heroImage: z.optional(image()),
+			sliderImages: z.array(z.object({
+				src: z.string(),
+				alt: z.string().optional(),
+			})),
 			// Transform string to Date object
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
+			category: z.array(z.string()),
+      		tags: z.array(z.string())
 		}),
 });
 

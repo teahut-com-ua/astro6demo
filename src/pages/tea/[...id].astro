@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from 'astro:content';
+import TeaLayout from '../../layouts/TeaLayout.astro';
+
+export async function getStaticPaths() {
+	const blogEntries = await getCollection('tea');
+	return blogEntries.map(entry => ({
+		params: { id: entry.id },
+		props: { entry },
+	}));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<TeaLayout frontmatter={entry.data}>
+    <Content />
+</TeaLayout>

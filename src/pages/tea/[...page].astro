@@ -6,7 +6,7 @@ import FormattedMonth from '../../components/FormattedMonth.astro';
 import Layout from '../../layouts/Layout.astro';
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const posts = (await getCollection('articles'))
+  const posts = (await getCollection('tea'))
     .filter((post) => post.data.posted !== false)
     .sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
   );
@@ -15,13 +15,13 @@ export const getStaticPaths = (async ({ paginate }) => {
 
 const { page } = Astro.props;
 
-const title = `Читальня`;
-const description = "Тут зібрані статті про Чай і Чань, чайну традицію і культуру";
+const title = "Наші чаї";
+const description = "Тут представлені чаї та чайний посуд, якими ми можемо з вами поділитися.";
 const pageNumber = page.currentPage;
 ---
 
 <Layout {title} {description} >
-	<h1 class="page-title">{title}</h1>
+    <h1 class="page-title">{title}</h1>
 	<p class="page-description">{description}</p>
 	<div class="pagination-block">
     	{page.url.prev && <a href={page.url.prev} class="prev-page-pagin">&#8592;</a>}
@@ -33,7 +33,7 @@ const pageNumber = page.currentPage;
 		<ul>
 			{page.data.map((post) => (
 				<li>
-					<a href={`/articles/${post.id}`}>
+					<a href={`/tea/${post.id}`}>
 						{post.data.heroImage && (
 							<Image width={720} height={360} src={post.data.heroImage} alt="" />
 						)}

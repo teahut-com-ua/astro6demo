@@ -1,0 +1,138 @@
+---
+import { Image } from "astro:assets";
+
+type Props = {
+	images: [{
+		src: string,
+		alt: string,
+	}],
+}
+
+const { images } = Astro.props;
+---
+
+<section class="carousel">
+	{images.map((image) => (
+		<figure class="slide">
+			<Image 
+				src={image.src}
+				alt={image.alt}
+				width={900}
+				height={900}
+				class="slide-image"
+			/>
+			<figcaption>{image.alt}</figcaption>
+		</figure>
+	))}
+</section>
+
+<style>
+	image {
+		border: unset;
+	}
+	.carousel {
+		margin: 0 auto 3em;
+		width: 100%;
+		display: flex;
+		gap: 1em;
+		
+		overflow-x: auto;
+		overscroll-behavior-x: contain;
+		scroll-snap-type: x mandatory;
+		-webkit-overflow-scrolling: touch;
+		scroll-marker-group: after;
+		
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+		anchor-name: --carousel;
+		
+		@media (prefers-reduced-motion: no-preference) {
+			scroll-behavior: smooth;
+		}
+		
+		@media (min-width: 720px){
+			max-width: 80svh;
+		}
+
+		& .slide {
+			flex: 0 0 100%;
+			accent-color: grey;
+			scroll-snap-align: start;
+			/* padding: 1em; */
+		}
+	}
+
+	.carousel::-webkit-scrollbar { display: none; }
+
+	.carousel::scroll-button(*) {
+		position: absolute;
+		position-anchor: --carousel;
+		align-self: anchor-center;
+		font-size: 1.2rem;
+		height: 2rem;
+		width: 2rem;
+		border-radius: 100vw;
+		border: none;
+		cursor: pointer;
+	}
+
+	.carousel::scroll-button(*):hover,
+	.carousel::scroll-button(*):focus-visible {
+		opacity: 100%;
+	}
+
+	.carousel::scroll-button(left) {
+		content: "◄";
+		padding-left: 2px;
+		right: calc(anchor(left) - 60px);
+	}
+
+	.carousel::scroll-button(right) {
+		content: "►";
+		padding-right: 2px;
+		left: calc(anchor(right) - 60px);
+	}
+
+	.slide-image {
+		max-width: 100%;
+		border-radius: 0.5em 0.5em 0 0;
+	}
+
+	.carousel::scroll-marker-group {
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		position-anchor: --carousel;
+		gap: 1rem;
+		top: calc(anchor(bottom) + 15px);
+		justify-self: anchor-center;
+	}
+
+
+	.slide-image::scroll-marker {
+		content: "";
+		border: 2px solid CanvasText;
+		border-radius: 100%;
+		height: 1rem;
+		width: 1rem;
+	}
+
+	.slide-image::scroll-marker:hover,
+	.slide-image::scroll-marker:focus-visible {
+		background: light-dark(CanvasText, var(--active));
+	}
+
+	.slide-image::scroll-marker:target-current {
+		background: light-dark(CanvasText, var(--active));
+	}
+
+    figcaption {
+        text-align: center;
+		font-size: 1rem;
+		color: #e2dbbe;
+		background: rgba(0, 0, 2, 0.7);
+		padding: .3rem 0;
+		margin: 0;
+		white-space: normal;
+	}
+</style>

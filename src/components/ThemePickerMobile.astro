@@ -2,73 +2,90 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<form class="theme-picker-mobile" action="">
-    <fieldset>
-        <legend class="visually-hidden">Вибір теми:</legend>
-        <label class="icon-label" for="light">
-            <Icon name="sun-filled" size={24} />
-            <input 
-                class="visually-hidden"
-                name="color-scheme" 
-                type="radio" 
-                value="light"
-                id="light"
-            >
+<fieldset class="mobile-mode-switcher">
+    <div class="mobile-icon-block light">
+        <input type="radio" name="mobile-switcher" id="light" value="light">
+        <label class="mobile-icon-label" for="light">
+            <Icon name="sun-filled" size={32} /><span>Світла</span>
         </label>
-        <label class="icon-label" for="dark">
-            <Icon name="moon-filled" size={24} />
-            <input 
-                class="visually-hidden"
-                name="color-scheme" 
-                type="radio" 
-                value="dark"
-                id="dark"
-            >
+    </div>
+    <div class="mobile-icon-block dark">
+        <input type="radio" name="mobile-switcher" id="dark" value="dark">
+        <label class="mobile-icon-label" for="dark">
+            <Icon name="moon-filled" size={32} />
+            <span>Темна</span>
         </label>
-    </fieldset>
-</form>
+    </div>
+</fieldset>
 
 <style>
-    form.theme-picker-mobile {
-        position: fixed;
+    .mobile-mode-switcher {
+        display: flex;
+        justify-content: space-around;
+
+        & div {
+            margin: 0;
+            padding: 0;
+        }
+        
+	}
+    
+	fieldset {
+		margin-inline: 0;
+		padding-block: 0;
+		padding-inline: 0;
+		border-width: 0;
+        color: var(--foreground-dark);
+        background: light-dark(var(--footer-light), var(--brown-dark));
+	}
+    
+    
+    .mobile-icon-block {
+        width: 100%;
+        border: 2px solid light-dark(var(--grey), #867d7c);
+    }
+    
+    .mobile-icon-block:has(input[name="mobile-switcher"][type="radio"]:checked) {
+        border: 1px solid light-dark(var(--footer), var(--foreground-dark));
+		background: light-dark(oklch(85% 0.063 96.44), var(--active));
+	}
+
+    label {
+        width: 100%;
+        height: 100%;
         margin: 0 auto;
-        top: 1.2rem;
-        right: 1rem;
-        display: block;
-        width: fit-content;
-        margin: 0 auto;
-    }
-
-    fieldset {
+        padding: 0.5rem 0;
+        justify-content: center;
+        align-items: center;
         display: flex;
-        /* gap: 0.1rem; */
-        margin-inline: 0;
-        padding-inline: 0;
-        padding-block: 0;
+        transition: color 0.15s ease-in-out;
+        gap: 1rem;
     }
-
-    .visually-hidden {
-        clip: rect(0 0 0 0);
-        clip-path: inset(50%);
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-        position: absolute;
-        white-space: nowrap;
-    }
-
-    .theme-picker > fieldset,
-    .theme-picker-mobile > fieldset {
-        border: 0;
-        display: flex;
-        border-radius: 999px;
-        background-color: light-dark(var(--background), var(--foreground-dark));
-        color: light-dark(var(--foreground), var(--footer));
-    }
-
-    .icon-label {
-        display: flex;
-        padding: 0.7rem;
-        text-align: center;
-    }
+	
+	input[type="radio"] {
+		display: none;
+	}
 </style>
+
+<script is:inline>
+    document.addEventListener('astro:page-load', () => {
+
+        const radioButtons = document.querySelectorAll('input[name="mobile-switcher"]');
+
+        // Set theme based on saved preference on load
+        const currentTheme = sessionStorage.getItem('theme');
+            if (currentTheme) {
+            document.querySelector(`input[value="${currentTheme}"]`).checked = true;
+        } 
+
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if (e.target.value === 'dark') {
+                    sessionStorage.setItem('theme', 'dark');
+                } else {
+                    sessionStorage.setItem('theme', 'light');
+                }
+            });
+        });
+    });
+</script>

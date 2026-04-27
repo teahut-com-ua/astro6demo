@@ -1,0 +1,151 @@
+---
+import ImageSlider from '../components/ImageSlider.astro';
+import InformationBlock from '../components/InformationBlock.astro';
+import {exchangePrice} from "../utils";
+import Layout from './Layout.astro';
+
+const { frontmatter } = Astro.props;
+---
+<Layout pageTitle={frontmatter.title} description={frontmatter.description} >
+    <section class="information-block">
+        <ImageSlider images={frontmatter.sliderImages} />
+        <div class="text-information"> 
+            <div class="headerContainer">
+                <h1 class="title">{frontmatter.title}</h1>
+                <h4 class="subtitle">{frontmatter.subtitle}</h4>
+                <div class="yieldYear">
+                    <div>Врожай:</div>
+                    <div><p>{frontmatter.yieldYear}</p></div>
+                </div>
+                <div class="region">
+                    <div class="heading">Походження:</div>
+                    <div class="content"><p>{frontmatter.region}</p></div>
+                </div>
+                <div class="variety">
+                    <div class="heading">Різновид:</div>
+                    <div><p>{frontmatter.variety}</p></div>
+                </div>
+                <div class="priceBlock">
+                    <div>
+                        <p>{frontmatter.item}: </p>
+                    </div>
+                    <div>
+                        <p><span class="price">{exchangePrice(frontmatter.price)}</span> грн.</p>
+                    </div>
+                </div>
+                <div class="tags last-line">
+                    {frontmatter.tags.map((tag: unknown) => (
+                        <button class="tag">
+                            <a type="button" aria-label="To Tag" href={`/tags/${tag}`}>{tag}</a>
+                        </button>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="prose">
+        <slot />
+    </section>
+</Layout>
+
+<style>
+    .prose {
+		margin: 2rem auto 0;
+		
+		@media (min-width: 720px) {
+            /* padding: 0 5rem; */
+			max-width: 720px;
+		}
+	}
+    .information-block {
+        display: flex;
+        flex-direction: column;
+        /* flex-wrap: wrap; */
+
+        @media (min-width: 960px) {
+            flex-direction: row;
+            gap: 2rem;
+
+            
+        }
+    }
+    .text-information {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title, .subtitle { text-align: center; }
+
+    .title {
+        margin-top: 1rem;
+    
+        @media (min-width: 960px){
+            margin-top: 0;
+        }
+    }
+    
+    .subtitle { margin: 0 0 3rem; }
+
+    .region,
+    .yieldYear,
+    .variety,
+    .priceBlock {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .content {
+        text-align: end;
+    }
+
+    .heading {
+        margin-right: 1rem;
+    }
+    
+    .priceBlock { align-items: center; }
+
+    .price {
+        padding-left: 1rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: rgb(0, 153, 33);
+    }
+
+    button>a { 
+        color: light-dark(var(--foreground), var(--background));
+        padding: .3rem .5rem;
+        display: block;
+    }
+  
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+  
+    button.tag {
+        padding: .3rem .5rem;
+        margin: 0.25em;
+        border: dotted 1px #7c7c7c;
+        border-radius: .5em;
+        font-size: 1rem;
+        background-color: var(--button);
+        cursor: pointer;
+    }
+
+    .tag:hover>a {
+        color: var(--background);
+        transition: 0.3s;
+
+    }
+
+    .tag:hover { 
+        background-color: var(--active);
+        transition: 0.3s;
+        &a{
+            color: var(--background);
+        }
+    }
+</style>

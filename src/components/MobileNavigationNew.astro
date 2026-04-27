@@ -1,0 +1,154 @@
+---
+import { Icon }from "astro-icon/components";
+import HeaderLink from './HeaderLink.astro';
+import ThemePickerMobile from "./ThemePickerMobile.astro";
+---
+
+<nav class="mobile-menu-bar">
+    <button popovertarget="mobile-home-page" style="anchor-name: --anchor-button;">
+		<Icon class="icon" name="hut" size={36} />
+	</button>
+    <div id="mobile-home-page" class="mobile-tooltip" popover style="position-anchor: --anchor-button;">
+        <ThemePickerMobile />
+        <div class="mobile-menu-block">
+            <HeaderLink href="/">
+                Хатинка
+            </HeaderLink>
+            <a href="">
+                - Наша Традиція
+            </a>
+            <a href="">
+                - Керівні засади цієї Хатинки
+            </a>
+            <a href="">
+                - Про нас
+            </a>
+            <a href="">
+                - Про нашу крамничку
+            </a>
+        </div>
+    </div>
+    <button popovertarget="mobile-tea-page" style="anchor-name: --anchor-button;">
+        <Icon class="icon" name="teapot-leaves" size={36} />
+    </button>
+    <div id="mobile-tea-page" class="mobile-tooltip" popover style="position-anchor: --anchor-button; text-align: center;">
+        <ThemePickerMobile />
+        <div class="mobile-menu-block">
+            <HeaderLink href="/tea">
+                Чай і начиння
+            </HeaderLink>
+            <a class="menu-link" href='/categories/shengcha/'>
+                - Шен пуери
+            </a>
+            <a class="menu-link" href='/categories/heicha/'>
+                - Шу пуери й Хейча
+            </a>
+            <a class="menu-link" href='/categories/hongcha/'>
+                - Червоні чаї
+            </a>
+            <a class="menu-link" href='/categories/wulong&gaba/'>
+                - Вулони й ҐАБА
+            </a>
+            <a class="menu-link" href='/categories/baicha&lucha/'>
+                - Білі й Зелені
+            </a>
+            <a class="menu-link" href='/categories/japanese/'>
+                - Японські
+            </a>
+            <a class="menu-link teas" href='/teawares'>
+                - Чайне начиння
+            </a>
+            <a class="menu-link" href='/tags/'>
+                Позначки (tags)
+            </a>
+        </div>
+    </div>
+    <button popovertarget="mobile-blog-page" style="anchor-name: --anchor-button;">
+		<Icon class="icon" name="books" size={36} />
+	</button>
+	<div id="mobile-blog-page" class="mobile-tooltip" popover style="position-anchor: --anchor-button; text-align: end;">
+        <ThemePickerMobile />
+        <div class="mobile-menu-block">
+            <HeaderLink href="/articles">
+                Читальня
+            </HeaderLink>
+            <a class="menu-link" href='/library/gongfuchatips/'>
+                - Поради з Ґонфу Ча
+            </a>
+            <a class="menu-link" href='/library/gongfuteapot/'>
+                - Чайник Ґонфу
+            </a>
+            <a class="menu-link" href='/library/brewingtips/'>
+                - Поради щодо заварювання
+            </a>
+            <a class="menu-link" href='/library/teaandseasons/'>
+                - Про чай і сезони
+            </a>
+            <a class="menu-link" href='/library/questionsandanswers/'>
+                - Питання і відповіді
+            </a>
+        </div>
+    </div>
+</nav>
+
+<style>
+    nav.mobile-menu-bar {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        background-color: light-dark(var(--active-green), var(--footer));
+
+        & button {
+            height: 3.6rem;
+            width: 100%;
+			background-color: transparent;
+			color: light-dark(oklch(85% 0.063 96.44), var(--foreground-dark));
+			border: 0;
+			z-index: 2;
+        }
+
+        & .mobile-tooltip {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            position-area: top;
+            background-color: light-dark(var(--active-green), var(--footer));
+            border: 0;
+            overflow: visible;
+            z-index: -1;
+
+            a {
+				color: light-dark(var(--black), var(--foreground-dark));
+                text-transform: uppercase;
+				text-decoration: none;
+                line-height: 2.7rem;
+			}
+        }
+
+        .mobile-menu-block {
+            display: grid;
+            padding: 1rem 3rem;
+        }
+
+        [popover] {
+            translate: 0 360px;
+            transition: translate 0.5s ease-out, display 0.5s ease-out allow-discrete;
+
+            &:popover-open {
+                translate: 0;
+            }
+        }
+
+        @starting-style {
+            [popover]:popover-open {
+                translate: 0 360px;
+            }
+        }
+
+        @media (min-width: 720px) {
+			display: none;
+		}
+    }
+</style>

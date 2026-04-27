@@ -1,0 +1,34 @@
+---
+import { Image } from "astro:assets";
+
+type Props = {
+	images: [{
+		src: string,
+		alt: string,
+	}],
+}
+
+const { images } = Astro.props;
+---
+
+<section class="slider">
+    <div class="wrapper">
+		<div class="list">
+			{images.map((image) => (
+				<figure class="slide">
+					<Image 
+						src={image.src}
+						alt={image.alt}
+						width={900}
+						height={900}
+						class="slide-image"
+					/>
+					<figcaption>{image.alt}</figcaption>
+				</figure>
+			))}
+
+</section>
+
+<style>
+    
+</style>

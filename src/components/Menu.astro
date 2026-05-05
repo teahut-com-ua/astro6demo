@@ -1,0 +1,142 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<button popovertarget="home-page" style="anchor-name: --anchor-button-home;">
+	<Icon class="icon" name="hut" size={36} />
+</button>
+<div id="home-page" class="tooltip" popover style="position-anchor: --anchor-button-home;">
+	<ul>
+		<li>
+			<a href="/">
+                ХАТИНКА
+            </a>
+		</li>
+		<li>
+			<ul>
+				<li>
+					<a href="">
+                        Наша Традиція
+                    </a>
+				</li>
+				<li>
+					<a href="">
+                        Керівні засади цієї Хатинки
+                    </a>
+				</li>
+				<li>
+					<a href="">
+                        Про нас
+                    </a>
+				</li>
+				<li>
+					<a href="">
+                        Про нашу крамничку
+                    </a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</div>
+<button popovertarget="tea-page" style="anchor-name: --anchor-button-tea;">
+	<Icon class="icon" name="teapot-leaves" size={36} />
+</button>
+<div id="tea-page" class="tooltip" popover style="position-anchor: --anchor-button-tea;">
+	<ul>
+		<li>
+			<a href="/tea">
+                ЧАЙ І НАЧИННЯ
+            </a>
+		</li>
+		<li>
+            <ul>
+                <li>
+                    <a class="menu-link" href='/categories/shengcha/'>
+                        Шен пуери
+                    </a>
+                </li>
+                <li>
+                    <a class="menu-link" href='/categories/heicha/'>
+                        Шу пуери й Хейча
+                    </a>
+                </li>
+                <li>
+                    <a class="menu-link" href='/categories/hongcha/'>
+                        Червоні чаї
+                    </a>
+                </li>
+                <li>
+                    <a class="menu-link" href='/categories/wulong&gaba/'>
+                        Вулони й ҐАБА
+                    </a>
+                </li>
+                <li>
+                    <a class="menu-link" href='/categories/baicha&lucha/'>
+                        Білі й Зелені
+                    </a>
+                </li>
+                <li>
+                    <a class="menu-link" href='/categories/japanese/'>
+                        Японські
+                    </a>
+                </li>
+                <li>
+                    <a class="menu-link teas" href='/teawares'>
+                        Чайне начиння
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a class="menu-link" href='/tags/'>
+                Позначки чаїв
+            </a>
+        </li>
+	</ul>
+</div>
+<button popovertarget="blog-page" style="anchor-name: --anchor-button-articles;">
+	<Icon class="icon" name="books" size={36} />
+</button>
+<div id="blog-page" class="tooltip" popover style="position-anchor: --anchor-button-articles;">
+	<ul>
+		<li>
+			<a href="/articles">
+                ЧИТАЛЬНЯ
+            </a>
+		</li>
+		<li>
+            <ul>
+                <li>
+					<a class="menu-link" href='/library/gongfuchatips/'>
+                        Поради з Ґонфу Ча
+                    </a>
+				</li>
+				<li>
+					<a class="menu-link" href='/library/gongfuteapot/'>
+                        Чайник Ґонфу
+                    </a>
+				</li>
+				<li>
+					<a class="menu-link" href='/library/brewingtips/'>\
+                        Поради щодо заварювання
+                    </a>
+				</li>
+				<li>
+					<a class="menu-link" href='/library/teaandseasons/'>
+                        Про чай і сезони
+						
+                    </a>
+				</li>
+				<li>
+					<a class="menu-link" href='/library/questionsandanswers/'>
+						Питання і відповіді
+					</a>
+				</li>
+            </ul>
+        </li>
+	</ul>
+</div>
+
+<style>
+    
+</style>

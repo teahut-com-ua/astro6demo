@@ -105,12 +105,13 @@ const tea = defineCollection({
 			subtitle: z.string().optional(),
 			description: z.string(),
 			region: z.string(),
-			variety: z.string(),
-			yieldYear: z.string(),
+			variety: z.string().optional(),
+			yieldYear: z.string().optional(),
 			aging: z.string().optional(),
 			item: z.string().optional(),
       		price: z.number(),
 			heroImage: z.optional(image()),
+			imageAlt: z.string().optional(),
 			sliderImages: z.array(z.object({
 				src: z.string(),
 				alt: z.string().optional(),
@@ -123,4 +124,27 @@ const tea = defineCollection({
 		}),
 });
 
-export const collections = { articles, brewingtips, gongfuteapot, questionsandanswers, tea };
+const teaware = defineCollection({
+    loader: glob({ pattern: '**/*.{md,mdx}', base: "./src/content/teaware" }),
+    schema: ({image}) => z.object({
+		posted: z.boolean().default(true),
+		title: z.string(),
+		subtitle: z.string(),
+		description: z.string(),
+		pubDate: z.coerce.date(),
+		madeIn: z.string().optional(),
+		region: z.string().optional(),
+		item: z.string().optional(),
+		price: z.number(),
+		heroImage: image(),
+		imageAlt: z.string().optional(),
+		sliderImages: z.array(z.object({
+			src: z.string(),
+			alt: z.string().optional(),
+		})),
+      	category: z.array(z.string()),
+      	tags: z.array(z.string())
+    })
+});
+
+export const collections = { articles, brewingtips, gongfuteapot, questionsandanswers, tea, teaware };

@@ -55,6 +55,8 @@ html {
 	&:has(.icon-block #dark:checked) {
 		color-scheme: dark;
 	}
+
+	transition: 0.4s all;
 }
 body {
     font-family: "Gabriela", sans-serif;
@@ -68,46 +70,34 @@ body {
     display: grid;
     grid-template-rows: auto 1fr auto;
 	grid-template-columns: 1fr;
+	grid-template-areas: 
+		"header" 
+		"main" 
+		"footer";
 	
     @media (min-width: 720px) {
 		grid-template-rows: 1fr auto;
 		grid-template-columns: 5rem 1fr;
 		grid-template-areas: 
-		"aside main"
-		"aside footer";
+		"header main"
+		"header footer";
         font-size: clamp(1.25rem, 0.7rem + 0.7vw, 1.375rem);
 		width: 100%;
     }
 }
-.aside-menu {
-	display: none;
-	
-	@media (min-width: 720px) {
-		position: fixed;
-		display: grid;
-		grid-template-rows: 5rem 1fr 5rem;
-		gap: 2rem;
-		grid-template-columns: 5rem;
-		height: 100svh;
-		background-color: light-dark(var(--active-green), var(--footer));
-		place-items: center;
-		justify-content: space-between;
-		grid-area: aside;
-	}
-}
 main {
     max-width: calc(100% - 2em);
 	margin: auto;
+	grid-area: main;
     
     @media (min-width: 720px) {
-		grid-area: main;
         max-width: 1020px;
         padding: 2em 1em;
     }
 }
 footer {
+	grid-area: footer;
 	@media (min-width: 720px) {
-		grid-area: footer;
     }
 }
 h1,

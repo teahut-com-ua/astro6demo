@@ -1,9 +1,8 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
-import MobileNavigationNew from "../components/MobileNavigationNew.astro";
-import AsideMenu from "../components/AsideMenu.astro";
 import Header from "../components/Header.astro";
+import MobileNavigation from "../components/MobileNavigation.astro";
 
 const { title, description } = Astro.props;
 ---
@@ -13,11 +12,28 @@ const { title, description } = Astro.props;
 	<BaseHead title={title} description={description} />
 	<body>
 		<Header {title} />
-		<AsideMenu />
 		<main>
 			<slot />
 		</main>
 		<Footer />
-		<MobileNavigationNew />
+		<MobileNavigation />
 	</body>
 </html>
+
+<style>
+	.nav-bar {
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: auto;
+		gap: 2rem;
+		background-color: light-dark(var(--active-green), var(--footer));
+		justify-content: center;
+
+		@media (min-width: 720px) {
+			display: none;
+		}
+	}
+</style>

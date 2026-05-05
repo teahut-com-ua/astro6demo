@@ -2,7 +2,7 @@
 import { Icon } from "astro-icon/components";
 ---
 
-	<fieldset class="mode-switcher">
+	<fieldset class="mode-switcher-block">
 		<div class="icon-block light">
 			<input type="radio" name="switcher" id="light" value="light">
 			<label class="icon-label" for="light">
@@ -18,9 +18,9 @@ import { Icon } from "astro-icon/components";
 	</fieldset>
 
 <style>
-    .mode-switcher {
+    .mode-switcher-block {
 		display: flex;
-
+	
 		& div {
 			gap: 0;
 			margin: 0;
@@ -29,13 +29,10 @@ import { Icon } from "astro-icon/components";
 
 	fieldset {
 		display: flex;
-		/* gap: 0.5rem; */
 		margin-inline: 0;
 		padding-block: 0;
 		padding-inline: 0;
 		border-width: 0;
-		/* border: 1px solid var(--footer);
-		border-radius: 100vw; */
 	}
 
 	label {
@@ -45,7 +42,7 @@ import { Icon } from "astro-icon/components";
 	}
 
 	.icon-block {
-		padding: 0.45rem;
+		padding: 0.5rem;
 		border-radius: 100vw;
 	}
 	
@@ -53,7 +50,7 @@ import { Icon } from "astro-icon/components";
 		border: 1px solid light-dark(var(--footer), var(--foreground-dark));
 		background: light-dark(oklch(85% 0.063 96.44), var(--active));
 	}
-	
+
 	input[type="radio"] {
 		display: none;
 	}

@@ -1,22 +1,10 @@
 ---
-import { Image } from "astro:assets";
-import logo from '../../public/logo.png';
-import ThemePicker from "./ThemePicker.astro";
-import HeaderLink from "./HeaderLink.astro";
 import { Icon } from "astro-icon/components";
-
-const { title = "Майстерня" } = Astro.props;
+import HeaderLink from "./HeaderLink.astro";
 ---
 
-<header class="main-header" {title}>
-		<a href="/">
-			<Image class="logo" src={logo} alt="Logo" />
-		</a>
-		<h2 class="header-menu-title">
-			{title}
-		</h2>
-		<nav class="navigation-bar" aria-label="Navigation menu">
-			<button popovertarget="home-page" style="anchor-name: --anchor-button-home;">
+<nav class="navigation">
+	<button popovertarget="home-page" style="anchor-name: --anchor-button-home;">
 		<Icon class="icon" name="hut" size={36} />
 	</button>
 	<div id="home-page" class="tooltip" popover style="position-anchor: --anchor-button-home;">
@@ -30,22 +18,22 @@ const { title = "Майстерня" } = Astro.props;
 				<ul>
 					<li>
 						<a href="">
-							- наша Традиція
+							наша Традиція
 						</a>
 					</li>
 					<li>
 						<a href="">
-							- керівні засади цієї Хатинки
+							керівні засади цієї Хатинки
 						</a>
 					</li>
 					<li>
 						<a href="">
-							- про нас
+							про нас
 						</a>
 					</li>
 					<li>
 						<a href="">
-							- про нашу крамничку
+							про нашу крамничку
 						</a>
 					</li>
 				</ul>
@@ -66,37 +54,37 @@ const { title = "Майстерня" } = Astro.props;
 				<ul>
 					<li>
 						<a class="menu-link" href='/categories/shengcha/'>
-							- шен пуери
+							шен пуери
 						</a>
 					</li>
 					<li>
 						<a class="menu-link" href='/categories/heicha/'>
-							- шу пуери й хейча
+							шу пуери й хейча
 						</a>
 					</li>
 					<li>
 						<a class="menu-link" href='/categories/hongcha/'>
-							- червоні чаї
+							червоні чаї
 						</a>
 					</li>
 					<li>
 						<a class="menu-link" href='/categories/wulong&gaba/'>
-							- вулони й ґаба
+							вулони й ґаба
 						</a>
 					</li>
 					<li>
 						<a class="menu-link" href='/categories/baicha&lucha/'>
-							- білі й зелені
+							білі й зелені
 						</a>
 					</li>
 					<li>
 						<a class="menu-link" href='/categories/japanese/'>
-							- японські
+							японські
 						</a>
 					</li>
 					<li>
 						<a class="menu-link teas" href='/teawares'>
-							- чайне начиння
+							Чайне начиння
 						</a>
 					</li>
 				</ul>
@@ -121,100 +109,37 @@ const { title = "Майстерня" } = Astro.props;
 				<ul>
 					<li>
 						<a class="menu-link" href='/library/gongfuchatips/'>
-							- поради з ґонфу ча
+							поради з ґонфу ча
 						</a>
 					</li>
 					<li>
 						<a class="menu-link" href='/library/gongfuteapot/'>
-							- чайник ґонфу
+							чайник ґонфу
 						</a>
 					</li>
 					<li>
 						<a class="menu-link" href='/library/brewingtips/'>
-							- поради щодо заварювання
+							поради щодо заварювання
 						</a>
 					</li>
 					<li>
 						<a class="menu-link" href='/library/teaandseasons/'>
-							- про чай і сезони
+							про чай і сезони
 						</a>
 					</li>
 					<li>
 						<a class="menu-link" href='/library/questionsandanswers/'>
-							- питання і відповіді
+							питання і відповіді
 						</a>
 					</li>
 				</ul>
 			</li>
 		</ul>
 	</div>
-		</nav>
-		<div class="theme-picker">
-			<ThemePicker />
-		</div>
-</header>
+</nav>
 
 <style>
-	header.main-header {
-		grid-area: header;
-		margin: 0 0 2rem;
-		padding: 0.5em 0.7em;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		background: light-dark(var(--active-green), var(--footer));
-		box-shadow:  0px 2px 8px rgba(0,0,0, 0.5);
 
-		@media (min-width: 720px) {
-			margin: 0;
-			padding: 0;
-			height: 100svh;
-			display: grid;
-			grid-template-columns: 5rem;
-			grid-template-rows: 5rem 1fr 5rem;
-			grid-template-areas: 
-			"logo"
-			"menu"
-			"theme-picker";
-			justify-items: center;
-			position: fixed;
-		}
-	}
-
-	.logo {
-		grid-area: logo;
-		display: block;
-		width: 4rem;
-        max-width: 100%;
-        aspect-ratio: 1 / 1;
-		padding: 0.3rem;
-		background-color: oklch(85% 0.063 96.44);
-		border-radius: 100vw;
-		border: 1px solid rgb(var(--black));
-	}
-	h2.header-menu-title {
-		margin: 0;
-		font-size: 1.8em;
-		text-align: end;
-		color: oklch(85% 0.063 96.44);
-
-		@media (min-width: 720px) {
-			display: none;
-		}
-	}
-	.navigation-bar {
-		display: none;
-
-		@media (min-width: 720px) {
-			grid-area: menu;
-			display: flex;
-			flex-direction: column;
-			gap: 2rem;
-			background-color: light-dark(var(--active-green), var(--footer));
-			place-items: center;
-			justify-content: space-between;
-		}
-	}
 	button {
 		height: 3.6rem;
         width: 100%;
@@ -222,7 +147,6 @@ const { title = "Майстерня" } = Astro.props;
 		color: light-dark(oklch(85% 0.063 96.44), var(--foreground-dark));
 		border: 0;
 		z-index: 2;
-		cursor: pointer;
 	}
 
 	.tooltip {
@@ -281,16 +205,15 @@ const { title = "Майстерня" } = Astro.props;
 
 		ul {
 			list-style: none;
-			padding: 1rem;
+			padding: 1rem 0;
 		}
 
         li {
-            padding-left: 1rem;
+            padding: 0 1rem;
         }
 
         li:has(a.active) {
-            background: var(--green);
-			border-radius: 9px;
+            background: var(--button);
             color: light-dark(var(--active), var(--background));
         }
 
@@ -307,8 +230,5 @@ const { title = "Майстерня" } = Astro.props;
 		[popover]:popover-open {
             translate: -360px 0;
         }
-	}
-	.theme-picker {
-		grid-area: theme-picker;
 	}
 </style>

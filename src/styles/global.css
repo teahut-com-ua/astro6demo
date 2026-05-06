@@ -22,6 +22,7 @@
 	--brown: oklch(49.626% 0.13164 49.491);
 	--brown-dark: oklch(24.056% 0.05763 57.884);
 	--button: oklch(72.18% 0.093 108.52 / 52%);
+	--button-noop: oklch(72.18% 0.093 108.52);
 	--green: oklch(46% 0.15 144 / 90%);
 	--green-light: oklch(95.948% 0.08683 133.137);
 	--green-dark: oklch(75% 0.21 144 / 100%);
@@ -88,6 +89,7 @@ body {
 main {
     max-width: calc(100% - 2em);
 	margin: auto;
+	padding-bottom: 1.5rem;
 	grid-area: main;
     
     @media (min-width: 720px) {

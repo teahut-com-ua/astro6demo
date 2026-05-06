@@ -61,12 +61,15 @@ import { Icon } from 'astro-icon/components';
     }
 
     .social li {
-        position: relative;
         flex-basis: 3.2rem;
+
+        @media (min-width: 45rem) {
+            position: relative;
+            flex-basis: 3.4rem;
+        }
     }
 
     .social a {
-        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -80,32 +83,31 @@ import { Icon } from 'astro-icon/components';
         outline: none;
         overflow: hidden;
         transition: color 0.3s ease-in-out;
-    }
 
-    .social a > .icon {
-        position: relative;
-        z-index: 1;
+        @media (min-width: 45rem) {
+            position: relative;
+            color: var(--active);
+            background: unset;
+        }
     }
-
+    
     .social a::after {
-        position: absolute;
         content: "";
         inset: 100% 0 0;
         background: var(--bg);
         pointer-events: none;
         transition: inset 0.3s ease-in-out;
-    }
 
-    
-    @media (min-width: 48rem) {
-        .social li {
-            flex-basis: 3.4rem;
+        @media (min-width: 45rem) {
+            position: absolute;
         }
+    }
+    
+    @media (min-width: 45rem) {
         .social li::after {
             position: absolute;
             content: attr(data-tooltip);
             inset: -45% auto auto 50%;
-            /* z-index: -1; */
             translate: -50%;
             padding: 0.25rem 0.75rem;
             font-size: 0.875rem;
@@ -125,18 +127,9 @@ import { Icon } from 'astro-icon/components';
             inset-block-start: -90%;
         }
 
-        .social a {
-            color: var(--active);
-            background: unset;
-        }
-        
-        .social a::after {
-            position: absolute;
-            content: "";
-            inset: 100% 0 0;
-            background: var(--bg);
-            pointer-events: none;
-            transition: inset 0.3s ease-in-out;
+        .social a > .icon {
+            position: relative;
+            z-index: 1;
         }
         
         .social a:hover,

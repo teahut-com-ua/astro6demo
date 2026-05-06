@@ -19,21 +19,3 @@ const { title, description } = Astro.props;
 		<MobileNavigation />
 	</body>
 </html>
-
-<style>
-	.nav-bar {
-		position: fixed;
-		bottom: 0;
-		width: 100%;
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		grid-template-rows: auto;
-		gap: 2rem;
-		background-color: light-dark(var(--active-green), var(--footer));
-		justify-content: center;
-
-		@media (min-width: 720px) {
-			display: none;
-		}
-	}
-</style>

@@ -1,34 +1,131 @@
 ---
 import Social from "./Social.astro";
+import Search from "astro-pagefind/components/Search";
 
 const today = new Date();
 ---
 
 <footer>
+	<section class="search-container">
+	</section>
+		<Search id="search" className="pagefind-ui" uiOptions={{ 
+			showImages: false,
+			resetStyles: true,
+			debounceTimeoutMs: 500
+		}} />
 	&copy; 2014-{today.getFullYear()} TEAHUT.COM.UA. All rights reserved.
 	<section class="footer-social-container">
 		<Social />
 	</section>
 </footer>
 
-<style>
+<style is:global>
 	footer {
 		padding: 2em 1em 6em 1em;
 		background: linear-gradient(light-dark(var(--footer-light), var(--footer-dark))) no-repeat;
 		color: var(--gray-light);
 		text-align: center;
-
+  
 		@media(min-width: 720px) {
 			padding: 2em 1em 2em 1em;
 		}
 	}
 	.footer-social-container {
 		padding: 2rem 0 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        gap: 2rem;
-        font-size: 1rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		gap: 2rem;
+		font-size: 1rem;
 	}
+
+	:root {
+		--pagefind-ui-scale: 0.8;
+		--pagefind-ui-primary: var(--menu-surface);
+		--pagefind-ui-text: var(--foreground);
+		--pagefind-ui-message-text: light-dark(var(--foreground), var(--foreground-dark));
+		--pagefind-ui-result-title-text: var(--active);
+		--pagefind-ui-result-text: light-dark(var(--foreground), var(--foreground-dark));
+		--pagefind-ui-background: var(--button);
+		--pagefind-input-background: oklch(72.18% 0.093 108.52);
+		--pagefind-ui-border: var(--accent1);
+		--pagefind-ui-tag: #0d0a01;
+		--pagefind-ui-border-width: 2px;
+		--pagefind-ui-border-radius: 0.5rem;
+		--pagefind-ui-image-border-radius: 8px;
+		--pagefind-ui-image-box-ratio: 3 / 2;
+		--pagefind-ui-font: Arial, sans-serif;
+		--pagefind-button-background: var(--pagefind-input-background);
+		--pagefind-button-color: var(--pagefind-ui-message-text);
+	}
+
+	#search .pagefind-ui {
+		margin: 0 auto 3rem;
+		text-align: start;
+		max-width: 720px;
+	}
+
+	#search .pagefind-ui__search-input, #search .pagefind-ui__search-clear {
+		background-color: light-dark(oklch(92.819% 0.05692 96.455), oklch(79.64% 0.04 95.94));
+		color: var(--pagefind-ui-text);
+	}
+	#search .pagefind-ui__search-clear {
+		padding: 0 1rem;
+		background-color: oklch(54.692% 0.06914 108.505);
+		color: rgb(228, 228, 228);
+	}
+
+	#search .pagefind-ui__result-title, #search .pagefind-ui__result-link {
+		display: inline-block;
+		font-weight: 700;
+		font-size: calc(40px * var(--pagefind-ui-scale));
+		color: var(--pagefind-ui-result-title-text);
+	}
+	#search .pagefind-ui__result-excerpt {
+		color: var(--pagefind-ui-result-text);
+		font-weight: 400;
+		font-size: calc(1.5rem * var(--pagefind-ui-scale));
+	}
+	#search .pagefind-ui__message {
+		color: var(--pagefind-ui-message-text);
+		margin: calc(0.5rem * var(--pagefind-ui-scale)) 0 calc(1.5rem * var(--pagefind-ui-scale)) calc(0.5rem * var(--pagefind-ui-scale));
+	}
+	#search .pagefind-ui__button {
+		color: oklch(24.84% 0.039 95.36);
+		background: oklch(72.18% 0.093 108.52);
+	}
+	#search .pagefind-ui__result-thumb {
+	 	display: none;
+	}
+
+	#search .pagefind-ui__result-area {
+		background-color: var(--pagefind-input-background);
+	}
+
+  	.pagefind-ui .pagefind-ui__drawer:not(.pagefind-ui__hidden) {
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin-top: 0px;
+		z-index: 9999;
+		padding: 0 2em 1em;
+		overflow-y: auto;
+		box-shadow:
+		0 10px 10px -5px rgba(0, 0, 0, 0.2),
+		0 2px 2px 0 rgba(0, 0, 0, 0.1);
+		border-bottom-right-radius: var(--pagefind-ui-border-radius);
+		border-bottom-left-radius: var(--pagefind-ui-border-radius);
+		background-color: light-dark(oklch(92.819% 0.05692 96.455), oklch(24.43% 0.008 84.59));
+  	}
+
+  .pagefind-ui .pagefind-ui__result-link {
+    color: var(--pagefind-ui-primary);
+	/* background: var(--pagefind-ui-background); */
+  }
+
+  .pagefind-ui .pagefind-ui__result-excerpt {
+    color: var(--pagefind-ui-text);
+  }
+
 </style>

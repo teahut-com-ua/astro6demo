@@ -1,8 +1,13 @@
 ---
-
+import Search from "astro-pagefind/components/Search";
 ---
 <section class="search-bar">
-	<input type="search" class="search-input" placeholder="Пошук..." tabindex="0">
+	<Search id="search" className="pagefind-ui" uiOptions={{ 
+			showImages: false,
+			resetStyles: true,
+			debounceTimeoutMs: 500
+		}} />
+	<!-- <input type="search" class="search-input" placeholder="Пошук..." tabindex="0"> -->
 	<button class="search-submit" tabindex="0">
 		<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 15 15"><path fill="currentColor" d="M6.5 2a4.5 4.5 0 0 1 3.515 7.308l2.839 2.839l.064.078a.5.5 0 0 1-.693.693l-.079-.064l-2.838-2.84A4.5 4.5 0 1 1 6.5 2m0 1a3.5 3.5 0 1 0 0 7a3.5 3.5 0 0 0 0-7"/></svg>
 	</button>
@@ -15,13 +20,16 @@
 	}
 	.search-bar {
 		--size: 3rem;
-		--padding: 0.3rem;
+		--padding: 0.1rem;
 		--expanded-width: 300px;
 
+		position: fixed;
+		top: 1rem;
+		right: 1rem;
 		display: flex;
 		justify-content: flex-end;
 		background-color: #fff;
-		box-shadow: 0 10px 10px 0 #d6d9e2;
+		/* box-shadow: 0 10px 10px 0 #d6d9e2; */
 		border-radius: 100px;
 		overflow: hidden;
 
@@ -60,9 +68,9 @@
 		font-size: 18px;
 		color: #fff;
 		background-color: #3a3a3a;
-		border-radius: 50%;
+		border-radius: 100%;
 		border: none;
-		width: var(--size);
+		/* width: var(--size); */
 		cursor: pointer;
 		aspect-ratio: 1;
 	}

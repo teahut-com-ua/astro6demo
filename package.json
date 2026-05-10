@@ -6,17 +6,18 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro build && npm run postbuild && astro dev",
-    "postbuild": "pagefind --site dist/",
-    "build": "export NODE_ENV=production && astro build",
+    "dev": "astro dev",
+    "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.9",
     "@astrojs/mdx": "^5.0.4",
     "@astrojs/sitemap": "^3.7.2",
-    "astro": "^6.1.9",
+    "astro": "^6.3.0",
     "astro-icon": "^1.1.5",
-    "astro-pagefind": "^1.8.6"
+    "astro-pagefind": "^1.8.6",
+    "typescript": "^6.0.3"
   }
 }

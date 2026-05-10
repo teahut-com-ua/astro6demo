@@ -23,7 +23,7 @@
 	--brown-dark: oklch(24.056% 0.05763 57.884);
 	--button: oklch(72.18% 0.093 108.52 / 52%);
 	--button-noop: oklch(72.18% 0.093 108.52);
-	--green: oklch(46% 0.15 144 / 90%);
+	--green: oklch(33.969% 0.09579 145.139);
 	--green-light: oklch(95.948% 0.08683 133.137);
 	--green-dark: oklch(75% 0.21 144 / 100%);
 	--gray-gradient: rgba(var(--gray-light), 50%), var(--background);
@@ -76,7 +76,7 @@ body {
 		"main" 
 		"footer";
 	
-    @media (min-width: 720px) {
+    @media (min-width: 45rem) {
 		grid-template-rows: 1fr auto;
 		grid-template-columns: 5rem 1fr;
 		grid-template-areas: 
@@ -92,14 +92,14 @@ main {
 	padding-bottom: 1.5rem;
 	grid-area: main;
     
-    @media (min-width: 720px) {
+    @media (min-width: 45rem) {
         max-width: 1020px;
         padding: 2em 1em;
     }
 }
 footer {
 	grid-area: footer;
-	@media (min-width: 720px) {
+	@media (min-width: 45rem) {
     }
 }
 h1,
@@ -112,27 +112,27 @@ h6 {
 	line-height: 1.2;
 }
 h1 {
-	@media(min-width: 720px) {
+	@media(min-width: 45rem) {
 		font-size: 3.052em;
 	}
 }
 h2 {
-	@media(min-width: 720px) {
+	@media(min-width: 45rem) {
 		font-size: 2.441em;
 	}
 }
 h3 {
-	@media(min-width: 720px) {
+	@media(min-width: 45rem) {
 		font-size: 1.953em;
 	}
 }
 h4 {
-	@media(min-width: 720px) {
+	@media(min-width: 45rem) {
 		font-size: 1.563em;
 	}
 }
 h5 {
-	@media(min-width: 720px) {
+	@media(min-width: 45rem) {
 		font-size: 1.25em;
 	}
 }
@@ -141,7 +141,7 @@ b {
 	font-weight: 700;
 }
 a {
-	color: var(--green);
+	color: light-dark(var(--green), var(--active-green));
 	text-decoration: none;
 }
 a:hover {
@@ -170,7 +170,7 @@ img {
 img.float-left {
     margin: 1rem auto 1.5rem;
 
-    @media (min-width: 720px) {
+    @media (min-width: 45rem) {
         display: inline;
         max-width: 45%;
         float: left;
@@ -180,7 +180,7 @@ img.float-left {
 img.float-right {
     margin: 1rem auto 1.5rem;
     
-    @media (min-width: 720px) {
+    @media (min-width: 45rem) {
         display: inline;
         max-width: 45%;
         float: right;
@@ -198,6 +198,17 @@ img.align-center {
 }
 .double-last-line {
     margin-bottom: 3.6rem;
+}
+.intro {
+	font-size: 1rem;
+	margin-left: 10vw;
+	text-align: right;
+	text-wrap: balance;
+	
+	@media (min-width: 45rem) {
+		font-size: 1.1rem;
+		margin-left: 6rem;
+	}
 }
 .go-up {
 	padding: 1rem 2rem;

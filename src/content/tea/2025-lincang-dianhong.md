@@ -7,7 +7,7 @@ region: Ліньцан, Юньнань
 variety: вікові пуерні дерева
 yieldYear: 2025 рік
 pubDate: 2025-12-15
-item: Вартість за 10 гр
+item: 10 гр
 price: 4.24
 heroImage: "/src/assets/tea/2025-lincang-dianhong/2025-lincang-dianhong.jpg"
 imageAlt: Дяньхон з диких дерев Да Хей Шань

@@ -57,4 +57,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = FallbackImag
 	<meta property="twitter:image" content={new URL(image.src, Astro.url)} />
 	
 	<ClientRouter />
+
+	<link href="/pagefind/pagefind-component-ui.css" rel="stylesheet">
+	<script is:inline src="/pagefind/pagefind-component-ui.js" type="module"></script>
 </head>

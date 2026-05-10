@@ -7,7 +7,7 @@ region: Юйчі, округа Наньтов
 variety: чайні дерева
 yieldYear: літо 2025 року
 pubDate: 2026-01-15
-item: Вартість за 10 гр
+item: 10 гр
 price: 4.05
 heroImage: "/src/assets/tea/2025-robust-red-jade/2025-robust-red-jade.jpg"
 imageAlt: Дужий Рубіновий, тайванський Червоний 2025 року

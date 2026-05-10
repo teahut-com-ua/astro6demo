@@ -7,7 +7,7 @@ region: Юйчі, округа Наньтов
 variety: вікові чайні дерева
 yieldYear: літо 2025 року
 pubDate: 2026-01-15
-item: Вартість за 10 гр
+item: 10 гр
 price: 4.26
 sliderImages: [
     {

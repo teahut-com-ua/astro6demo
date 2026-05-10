@@ -26,7 +26,7 @@ const { frontmatter } = Astro.props;
                 </div>
                 <div class="priceBlock">
                     <div>
-                        <p>{frontmatter.item}: </p>
+                        <p>Вартість за {frontmatter.item}: </p>
                     </div>
                     <div>
                         <p><span class="price">{exchangePrice(frontmatter.price)}</span> грн.</p>
@@ -53,22 +53,19 @@ const { frontmatter } = Astro.props;
 		margin: 2rem auto 0;
 		
 		@media (min-width: 720px) {
-            /* padding: 0 5rem; */
 			max-width: 720px;
 		}
 	}
     .information-block {
         display: flex;
         flex-direction: column;
-        /* flex-wrap: wrap; */
 
         @media (min-width: 960px) {
             flex-direction: row;
-            gap: 2rem;
-
-            
+            gap: 3rem;
         }
     }
+
     .text-information {
         width: 100%;
         display: flex;

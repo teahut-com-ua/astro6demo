@@ -147,29 +147,29 @@ const pageNumber = page.currentPage;
 	.pagination-block {
         display: grid; 
         grid-template-columns: 1fr auto 1fr;
-		    grid-template-areas: "prev page next";
+		grid-template-areas: "prev page next";
         justify-content: center; 
         gap: 3rem;
         margin-bottom: 1.5rem;
     }
 
     .prev-page-pagin {
-      grid-area: prev;
-      width: fit-content;
-      justify-self: end;
+      	grid-area: prev;
+      	width: fit-content;
+      	justify-self: end;
     }
 
     .next-page-pagin {
-      grid-area: next;
-      width: fit-content;
-      justify-self: start;
+      	grid-area: next;
+      	width: fit-content;
+      	justify-self: start;
     }
 
     .page-number {
-      color: light-dark(var(--green), var(--active));
-      text-align: center;
-      grid-area: page;
-      margin-bottom: unset;
+      	color: light-dark(var(--green), var(--active));
+      	text-align: center;
+      	grid-area: page;
+      	margin-bottom: unset;
     }
     
     .pagination-block > a {
